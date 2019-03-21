@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "serve -p 9000 dist",
     "dev": "webpack --watch --mode development",
     "build": "webpack --mode development",
     "launch": "concurrently \"npm run serve\" \"sleep 2 && openfin -l -c http://localhost:9000/standard-service.json\" \"sleep 2 && openfin -l -c http://localhost:9000/standard-client.json\"",
-    "demo": "npm run build && npm run launch"
+    "start": "npm run build && npm run launch"
   },
   "keywords": [],
   "author": "",

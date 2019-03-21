@@ -9,6 +9,6 @@
     },
     "runtime": {
         "arguments": "--remote-debugging-port=9090",
-        "version": "alpha"
+        "version": "stable"
     }
 }
