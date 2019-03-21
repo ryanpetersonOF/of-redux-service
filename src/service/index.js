@@ -1,9 +1,11 @@
-import pipe from "../shared/pipe";
+import {createStore} from 'redux';
 
-export default async function connectStoreToProvider(store, actionHelper = a => a) {
-    const provider = await fin.desktop.InterApplicationBus.Channel.create("redux-example");
-    provider.register('dispatch-action', pipe(actionHelper, store.dispatch.bind(store)))
-    store.subscribe(() => provider.publish('state-change', store.getState()))
-    provider.register('getState', () => store.getState())
-    return provider
-}
+import counter from '../reducers/counter'
+import {initializeProviderStore} from "./utils";
+
+// Create Redux Store on Service
+const store = createStore(counter, 0);
+
+// Wire the store and channel provider
+initializeProviderStore(store).then(() => console.log('store connected')).catch(console.error);
+

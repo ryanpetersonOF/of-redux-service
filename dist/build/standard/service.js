@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/standard/service.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/service/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -160,11 +160,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /*!******************************!*\
   !*** ./src/service/index.js ***!
   \******************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return connectStoreToProvider; });\n/* harmony import */ var _shared_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/pipe */ \"./src/shared/pipe.js\");\n\nasync function connectStoreToProvider(store, actionHelper = a => a) {\n  const provider = await fin.desktop.InterApplicationBus.Channel.create(\"redux-example\");\n  provider.register('dispatch-action', Object(_shared_pipe__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(actionHelper, store.dispatch.bind(store)));\n  store.subscribe(() => provider.publish('state-change', store.getState()));\n  provider.register('getState', () => store.getState());\n  return provider;\n}\n\n//# sourceURL=webpack:///./src/service/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _reducers_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/counter */ \"./src/reducers/counter.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ \"./src/service/utils.js\");\n\n\n // Create Redux Store on Service\n\nconst store = Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"createStore\"])(_reducers_counter__WEBPACK_IMPORTED_MODULE_1__[\"default\"], 0); // Wire the store and channel provider\n\nObject(_utils__WEBPACK_IMPORTED_MODULE_2__[\"initializeProviderStore\"])(store).then(() => console.log('store connected')).catch(console.error);\n\n//# sourceURL=webpack:///./src/service/index.js?");
+
+/***/ }),
+
+/***/ "./src/service/utils.js":
+/*!******************************!*\
+  !*** ./src/service/utils.js ***!
+  \******************************/
+/*! exports provided: initializeProviderStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initializeProviderStore\", function() { return initializeProviderStore; });\n/* harmony import */ var _shared_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/pipe */ \"./src/shared/pipe.js\");\n\n/**\n * Initializes the openfin channel and wires channel + redux actions\n * @param store A redux store\n * @param actionHelper Reducer\n */\n\nasync function initializeProviderStore(store, actionHelper = a => a) {\n  // Create the openfin channel 'redux-example'\n  const provider = await fin.desktop.InterApplicationBus.Channel.create(\"redux-example\"); // Register the 'dispatch-action' channel action and reduces in redux\n\n  provider.register('dispatch-action', Object(_shared_pipe__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(actionHelper, store.dispatch.bind(store))); // Subscribe Redux, triggering a channel publish of the state\n\n  store.subscribe(() => provider.publish('state-change', store.getState())); // Register the 'getState' channel action, returning the redux state\n\n  provider.register('getState', () => store.getState()); // Return the channel provider\n\n  return provider;\n}\n\n//# sourceURL=webpack:///./src/service/utils.js?");
 
 /***/ }),
 
@@ -177,18 +189,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ((fn1, ...funcs) => (...args) => funcs.reduce((res, f) => f(res), fn1(...args)));\n\n//# sourceURL=webpack:///./src/shared/pipe.js?");
-
-/***/ }),
-
-/***/ "./src/standard/service.js":
-/*!*********************************!*\
-  !*** ./src/standard/service.js ***!
-  \*********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _reducers_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../reducers/counter */ \"./src/reducers/counter.js\");\n/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service */ \"./src/service/index.js\");\n\n\n\nconst store = Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"createStore\"])(_reducers_counter__WEBPACK_IMPORTED_MODULE_1__[\"default\"], 0);\nObject(_service__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(store).then(() => console.log('store connected'));\n\n//# sourceURL=webpack:///./src/standard/service.js?");
 
 /***/ })
 
