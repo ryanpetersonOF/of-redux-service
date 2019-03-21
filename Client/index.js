@@ -1,7 +1,7 @@
 import pipe from "../Shared/pipe";
 
 export default function init(options, sharedStateActionName = 'shared_state_update') {
-    const clientP = fin.desktop.Service.connect(options);
+    const clientP = fin.desktop.InterApplicationBus.Channel.connect("redux-example", options);
     function createClientMiddleWare(shouldDispatchAction = (action) => action.type === sharedStateActionName ? false : action) {
         return store => next => action => {
             const toD = shouldDispatchAction(action);
