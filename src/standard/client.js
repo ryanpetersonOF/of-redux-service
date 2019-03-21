@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware} from 'redux';
 
-import renderCounter from "../Shared/renderCounter";
-import init from '../../Client';
+import renderCounter from "../renderCounter";
+import init from '../client';
 
 const {createClientMiddleWare, connect, defaultReducer} = init({uuid: 'standard-service'})
 

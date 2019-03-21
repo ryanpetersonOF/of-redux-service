@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Counter from './components/Counter'
+import Counter from './components/counter'
 
 const rootEl = document.getElementById('root')
 

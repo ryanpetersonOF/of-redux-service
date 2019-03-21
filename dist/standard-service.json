@@ -5,10 +5,12 @@
         "uuid": "standard-service",
         "applicationIcon": "http://localhost:9000/favicon.ico",
         "autoShow": true,
-        "saveWindowState": false
+        "saveWindowState": false,
+        "defaultHeight": 130,
+        "defaultWidth": 375
     },
     "runtime": {
         "arguments": "--remote-debugging-port=9090",
-        "version": "stable"
+        "version": "9.61.38.40"
     }
 }

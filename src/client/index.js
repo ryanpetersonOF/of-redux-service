@@ -1,4 +1,4 @@
-import pipe from "../Shared/pipe";
+import pipe from "../shared/pipe";
 
 export default function init(options, sharedStateActionName = 'shared_state_update') {
     const clientP = fin.desktop.InterApplicationBus.Channel.connect("redux-example", options);

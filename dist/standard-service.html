@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script src="build/standard/service.js"></script>
+    </head>
+    <body>
+        <h1>Redux service lives here</h1>
+        <p><button id="create">Create New Child Window</button></p>
+
+        <script>
+            document.getElementById("create").addEventListener("click", () => {
+                new fin.desktop.Window({
+                    autoShow: true, 
+                    name: "childWindow" + Math.floor(Math.random()*1000), 
+                    url: `http://localhost:${window.location.port}/standard-client.html`,
+                    saveWindowState: false,
+                    defaultWidth: 430,
+                    defaultHeight: 80
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
 
-import counter from '../Shared/Reducers/counter'
-import connect from "../../Service";
+import counter from '../reducers/counter'
+import connect from "../service";
 
 const store = createStore(counter, 0);
 
