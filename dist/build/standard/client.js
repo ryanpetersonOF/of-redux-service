@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/standard/client.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/client/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -323,39 +323,51 @@ eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpack
 
 /***/ }),
 
+/***/ "./src/client/components/counter.js":
+/*!******************************************!*\
+  !*** ./src/client/components/counter.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nclass Counter extends react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"] {\n  constructor(props) {\n    super(props);\n    this.incrementAsync = this.incrementAsync.bind(this);\n    this.incrementIfOdd = this.incrementIfOdd.bind(this);\n  }\n\n  incrementIfOdd() {\n    if (this.props.value % 2 !== 0) {\n      this.props.onIncrement();\n    }\n  }\n\n  incrementAsync() {\n    setTimeout(this.props.onIncrement, 1000);\n  }\n\n  render() {\n    const {\n      value,\n      onIncrement,\n      onDecrement\n    } = this.props;\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, \"Clicked: \", value, \" times\", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: onIncrement\n    }, \"+\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: onDecrement\n    }, \"-\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: this.incrementIfOdd\n    }, \"Increment if odd\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: this.incrementAsync\n    }, \"Increment async\"));\n  }\n\n}\n\nCounter.propTypes = {\n  value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,\n  onIncrement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,\n  onDecrement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (Counter);\n\n//# sourceURL=webpack:///./src/client/components/counter.js?");
+
+/***/ }),
+
 /***/ "./src/client/index.js":
 /*!*****************************!*\
   !*** ./src/client/index.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _renderCounter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderCounter */ \"./src/client/renderCounter.js\");\n/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils */ \"./src/client/utils.js\");\n\n\n\n\n\nconst {\n  createClientMiddleWare,\n  connect,\n  defaultReducer\n} = Object(_utils__WEBPACK_IMPORTED_MODULE_4__[\"default\"])({\n  uuid: 'standard-service'\n}); // Create local store\n\nconst store = Object(redux__WEBPACK_IMPORTED_MODULE_2__[\"createStore\"])(defaultReducer, NaN, Object(redux__WEBPACK_IMPORTED_MODULE_2__[\"applyMiddleware\"])(createClientMiddleWare())); // Render initial connecting message\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"connecting to service\"), document.getElementById('root')); // Wire store change listener\n\nstore.subscribe(Object(_renderCounter__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(store)); // Connect/setup client to provider\n\nconnect(store).then(() => console.log('connected to service'));\n\n//# sourceURL=webpack:///./src/client/index.js?");
+
+/***/ }),
+
+/***/ "./src/client/renderCounter.js":
+/*!*************************************!*\
+  !*** ./src/client/renderCounter.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/counter */ \"./src/client/components/counter.js\");\n\n\n\nconst rootEl = document.getElementById('root');\n/* harmony default export */ __webpack_exports__[\"default\"] = (store => () => react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_counter__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n  value: store.getState(),\n  onIncrement: () => store.dispatch({\n    type: 'INCREMENT'\n  }),\n  onDecrement: () => store.dispatch({\n    type: 'DECREMENT'\n  })\n}), rootEl));\n\n//# sourceURL=webpack:///./src/client/renderCounter.js?");
+
+/***/ }),
+
+/***/ "./src/client/utils.js":
+/*!*****************************!*\
+  !*** ./src/client/utils.js ***!
   \*****************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return init; });\n/* harmony import */ var _shared_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/pipe */ \"./src/shared/pipe.js\");\n\nfunction init(options, sharedStateActionName = 'shared_state_update') {\n  const clientP = fin.desktop.InterApplicationBus.Channel.connect(\"redux-example\", options);\n\n  function createClientMiddleWare(shouldDispatchAction = action => action.type === sharedStateActionName ? false : action) {\n    return store => next => action => {\n      const toD = shouldDispatchAction(action);\n\n      if (toD) {\n        clientP.then(client => client.dispatch('dispatch-action', toD));\n      } else {\n        next(action);\n      }\n    };\n  }\n\n  function defaultReducer(state = {}, action) {\n    return action.type === sharedStateActionName ? action.payload : state;\n  }\n\n  async function connect(store, updateActionCreator = payload => ({\n    type: sharedStateActionName,\n    payload\n  })) {\n    const client = await clientP;\n    const update = Object(_shared_pipe__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(updateActionCreator, store.dispatch.bind(store));\n    client.register('state-change', update);\n    const initialState = await client.dispatch('getState');\n    update(initialState);\n    return client;\n  }\n\n  return {\n    createClientMiddleWare,\n    connect,\n    defaultReducer\n  };\n}\n\n//# sourceURL=webpack:///./src/client/index.js?");
-
-/***/ }),
-
-/***/ "./src/components/counter.js":
-/*!***********************************!*\
-  !*** ./src/components/counter.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nclass Counter extends react__WEBPACK_IMPORTED_MODULE_0__[\"Component\"] {\n  constructor(props) {\n    super(props);\n    this.incrementAsync = this.incrementAsync.bind(this);\n    this.incrementIfOdd = this.incrementIfOdd.bind(this);\n  }\n\n  incrementIfOdd() {\n    if (this.props.value % 2 !== 0) {\n      this.props.onIncrement();\n    }\n  }\n\n  incrementAsync() {\n    setTimeout(this.props.onIncrement, 1000);\n  }\n\n  render() {\n    const {\n      value,\n      onIncrement,\n      onDecrement\n    } = this.props;\n    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"p\", null, \"Clicked: \", value, \" times\", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: onIncrement\n    }, \"+\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: onDecrement\n    }, \"-\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: this.incrementIfOdd\n    }, \"Increment if odd\"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"button\", {\n      onClick: this.incrementAsync\n    }, \"Increment async\"));\n  }\n\n}\n\nCounter.propTypes = {\n  value: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number.isRequired,\n  onIncrement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,\n  onDecrement: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (Counter);\n\n//# sourceURL=webpack:///./src/components/counter.js?");
-
-/***/ }),
-
-/***/ "./src/renderCounter.js":
-/*!******************************!*\
-  !*** ./src/renderCounter.js ***!
-  \******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_counter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/counter */ \"./src/components/counter.js\");\n\n\n\nconst rootEl = document.getElementById('root');\n/* harmony default export */ __webpack_exports__[\"default\"] = (store => () => react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_counter__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n  value: store.getState(),\n  onIncrement: () => store.dispatch({\n    type: 'INCREMENT'\n  }),\n  onDecrement: () => store.dispatch({\n    type: 'DECREMENT'\n  })\n}), rootEl));\n\n//# sourceURL=webpack:///./src/renderCounter.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return init; });\n/* harmony import */ var _shared_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shared/pipe */ \"./src/shared/pipe.js\");\n\nfunction init(options, sharedStateActionName = 'shared_state_update') {\n  // Connect to the service provider using openfin channel\n  const clientP = fin.desktop.InterApplicationBus.Channel.connect(\"redux-example\", options);\n\n  function createClientMiddleWare(shouldDispatchAction = action => action.type === sharedStateActionName ? false : action) {\n    return store => next => action => {\n      const toD = shouldDispatchAction(action);\n\n      if (toD) {\n        clientP.then(client => client.dispatch('dispatch-action', toD));\n      } else {\n        next(action);\n      }\n    };\n  }\n\n  function defaultReducer(state = {}, action) {\n    return action.type === sharedStateActionName ? action.payload : state;\n  }\n\n  async function connect(store, updateActionCreator = payload => ({\n    type: sharedStateActionName,\n    payload\n  })) {\n    // Get connect to service provider\n    const client = await clientP;\n    const update = Object(_shared_pipe__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(updateActionCreator, store.dispatch.bind(store)); // Register the state-change channel action from provider, triggering redux store\n\n    client.register('state-change', update); // Get the initial state from the provider\n\n    const initialState = await client.dispatch('getState');\n    update(initialState); // Return the connection\n\n    return client;\n  }\n\n  return {\n    createClientMiddleWare,\n    connect,\n    defaultReducer\n  };\n}\n\n//# sourceURL=webpack:///./src/client/utils.js?");
 
 /***/ }),
 
@@ -368,18 +380,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ((fn1, ...funcs) => (...args) => funcs.reduce((res, f) => f(res), fn1(...args)));\n\n//# sourceURL=webpack:///./src/shared/pipe.js?");
-
-/***/ }),
-
-/***/ "./src/standard/client.js":
-/*!********************************!*\
-  !*** ./src/standard/client.js ***!
-  \********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _renderCounter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../renderCounter */ \"./src/renderCounter.js\");\n/* harmony import */ var _client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../client */ \"./src/client/index.js\");\n\n\n\n\n\nconst {\n  createClientMiddleWare,\n  connect,\n  defaultReducer\n} = Object(_client__WEBPACK_IMPORTED_MODULE_4__[\"default\"])({\n  uuid: 'standard-service'\n});\nconst store = Object(redux__WEBPACK_IMPORTED_MODULE_2__[\"createStore\"])(defaultReducer, NaN, Object(redux__WEBPACK_IMPORTED_MODULE_2__[\"applyMiddleware\"])(createClientMiddleWare()));\nconst root = document.getElementById('root');\nreact_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"connecting to service\"), root);\nstore.subscribe(Object(_renderCounter__WEBPACK_IMPORTED_MODULE_3__[\"default\"])(store));\nconnect(store).then(() => console.log('connected to service')).then(() => console.log(store.getState()));\n\n//# sourceURL=webpack:///./src/standard/client.js?");
 
 /***/ })
 

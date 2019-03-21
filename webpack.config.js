@@ -2,8 +2,8 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-      'standard/client': './src/standard/client.js',
-      'standard/service': './src/standard/service.js',
+      'standard/client': './src/client/index.js',
+      'standard/service': './src/service/index.js',
   },
   module: {
     rules: [

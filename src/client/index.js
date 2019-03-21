@@ -1,30 +1,20 @@
-import pipe from "../shared/pipe";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createStore, applyMiddleware} from 'redux';
 
-export default function init(options, sharedStateActionName = 'shared_state_update') {
-    const clientP = fin.desktop.InterApplicationBus.Channel.connect("redux-example", options);
-    function createClientMiddleWare(shouldDispatchAction = (action) => action.type === sharedStateActionName ? false : action) {
-        return store => next => action => {
-            const toD = shouldDispatchAction(action);
-            if (toD) {
-                clientP.then(client => client.dispatch('dispatch-action', toD));
-            }
-            else {
-                next(action);
-            }
-        };
-    }
-    function defaultReducer(state = {}, action) {
-        return action.type === sharedStateActionName ? action.payload : state;
-    }
-    async function connect(store, updateActionCreator = (payload) => ({ type: sharedStateActionName, payload })) {
-        const client = await clientP;
-        const update = pipe(updateActionCreator, store.dispatch.bind(store));
-        client.register('state-change', update);
-        const initialState = await client.dispatch('getState');
-        update(initialState);
-        return client;
-    }
-    return {
-        createClientMiddleWare, connect, defaultReducer
-    };
-}
+import renderCounter from "./renderCounter";
+import init from './utils';
+
+const {createClientMiddleWare, connect, defaultReducer} = init({uuid: 'standard-service'});
+
+// Create local store
+const store = createStore(defaultReducer, NaN, applyMiddleware(createClientMiddleWare()));
+
+// Render initial connecting message
+ReactDOM.render(<div>connecting to service</div>, document.getElementById('root'));
+
+// Wire store change listener
+store.subscribe(renderCounter(store));
+
+// Connect/setup client to provider
+connect(store).then(() => console.log('connected to service'));
