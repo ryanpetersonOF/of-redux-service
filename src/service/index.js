@@ -1,4 +1,4 @@
-import pipe from "../Shared/pipe";
+import pipe from "../shared/pipe";
 
 export default async function connectStoreToProvider(store, actionHelper = a => a) {
     const provider = await fin.desktop.InterApplicationBus.Channel.create("redux-example");

@@ -2,15 +2,17 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-      'standard/client': './Standard/client.js',
-      'standard/service': './Standard/service.js',
+      'standard/client': './src/standard/client.js',
+      'standard/service': './src/standard/service.js',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: "babel-loader"
+        }
       }
     ]
   },
